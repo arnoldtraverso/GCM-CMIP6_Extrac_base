@@ -23,7 +23,7 @@ var HidroCuenca = ee.FeatureCollection("projects/ee-arnoldtraverso/assets/UH_ama
 // Agregar a mapa, en base a color
 
 var estilo = {
-  fillColor: 'blue',  // Relleno transparente en formato RGBA
+  fillColor: 'blue',      // Relleno transparente en formato RGBA
   color: 'FFFFFF',        // Borde blanco en formato hexadecimal
   width: 2                // Ancho del borde en pixeles
 };
