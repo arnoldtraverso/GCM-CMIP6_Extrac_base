@@ -1,4 +1,4 @@
-# GCM-CMIP6-Extract-pcp-base
+# GCM-CMIP6-Extrac-pcp-base
  
 El presente código se ha desarrollado de manera didáctica y para su uso académico, su uso está totalmente libre al publico y solo se requiere citar al autor, ¡muchas gracias!
 
