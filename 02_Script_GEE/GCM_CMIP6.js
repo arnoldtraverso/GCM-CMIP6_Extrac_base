@@ -36,8 +36,10 @@ Map.addLayer(HidroCuenca.style(estilo))
 
 // Parametros
 
-var listModel = ['ACCESS-CM2', 'ACCESS-ESM1-5'
-                 //'BCC-CSM2-MR', 'CESM2', 'CESM2-WACCM', 'CMCC-CM2-SR5',
+var listModel = ['ACCESS-CM2', 'ACCESS-ESM1-5',
+                 'BCC-CSM2-MR'
+                 //, 'CESM2'
+                 // 'CESM2-WACCM', 'CMCC-CM2-SR5'
                  //'CMCC-ESM2', 'CNRM-CM6-1', 'CNRM-ESM2-1', 'CanESM5', 'EC-Earth3', 'EC-Earth3-Veg-LR',
                  //'FGOALS-g3', 'GFDL-CM4', 'GFDL-ESM4', 'GISS-E2-1-G', 'HadGEM3-GC31-LL', 'HadGEM3-GC31-MM',
                  //'IITM-ESM', 'INM-CM4-8', 'INM-CM5-0', 'IPSL-CM6A-LR', 'KACE-1-0-G', 'KIOST-ESM',
@@ -72,7 +74,7 @@ var PcpDATA = function(image){
 
 // Loop para los modelos
 
-// var listEXP = ee.List([]);
+var listEXP = ee.List([]);
 
 for (var listGCM = 0; listGCM < listGCMmodel.length; listGCM++){
     var param = {model: listGCMmodel[listGCM][0],      // Modelo GCM
@@ -85,12 +87,12 @@ for (var listGCM = 0; listGCM < listGCMmodel.length; listGCM++){
 
   // Generando una lista vacia
   
-  var listEXP = ee.List([]);
+  // var listEXP = ee.List([]);
   
   // Fechas del modelo historico, Formato Año mes dia (YYYY-MM-DD)
   
-  var DateIni = '1950-01-01';
-  var DateFin = '2014-12-31';
+  var DateIni = '1990-01-01';
+  var DateFin = '1991-12-31';
   
   // 3. Ejecucion para extrccion de datos
   
@@ -124,14 +126,13 @@ for (var listGCM = 0; listGCM < listGCMmodel.length; listGCM++){
     }
     
     var PCPGCM = SelectGCM.map(extrac);
-    listEXP = listEXP.add(PCPGCM)
-    var DataEXP = ee.FeatureCollection(listEXP).flatten();
+    listEXP = listEXP.add(PCPGCM);
     
   }
   
-  // print('tamaño de muestra:', PCPGCM.size());
-   print(DataEXP.limit(5));
 }
+
+var DataEXP = ee.FeatureCollection(listEXP).flatten();
 
 // ******************************************************************************
 // Representando los valores extraidos
