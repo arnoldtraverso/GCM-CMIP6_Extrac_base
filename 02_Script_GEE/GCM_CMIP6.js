@@ -36,15 +36,13 @@ Map.addLayer(HidroCuenca.style(estilo))
 
 // Parametros
 
-var listModel = ['ACCESS-CM2', 'ACCESS-ESM1-5',
-                 'BCC-CSM2-MR'
-                 //, 'CESM2'
-                 // 'CESM2-WACCM', 'CMCC-CM2-SR5'
-                 //'CMCC-ESM2', 'CNRM-CM6-1', 'CNRM-ESM2-1', 'CanESM5', 'EC-Earth3', 'EC-Earth3-Veg-LR',
-                 //'FGOALS-g3', 'GFDL-CM4', 'GFDL-ESM4', 'GISS-E2-1-G', 'HadGEM3-GC31-LL', 'HadGEM3-GC31-MM',
-                 //'IITM-ESM', 'INM-CM4-8', 'INM-CM5-0', 'IPSL-CM6A-LR', 'KACE-1-0-G', 'KIOST-ESM',
-                 //'MIROC-ES2L', 'MIROC6', 'MPI-ESM1-2-HR', 'MPI-ESM1-2-LR', 'MRI-ESM2-0', 'NESM3',
-                 //'NorESM2-LM', 'NorESM2-MM', 'TaiESM1', 'UKESM1-0-LL'
+var listModel = ['ACCESS-CM2', 'ACCESS-ESM1-5', 
+                 'BCC-CSM2-MR', 'CESM2', 'CESM2-WACCM', 'CMCC-CM2-SR5',
+                 'CMCC-ESM2', 'CNRM-CM6-1', 'CNRM-ESM2-1', 'CanESM5', 'EC-Earth3', 'EC-Earth3-Veg-LR',
+                 'FGOALS-g3', 'GFDL-CM4', 'GFDL-ESM4', 'GISS-E2-1-G', 'HadGEM3-GC31-LL', 'HadGEM3-GC31-MM',
+                 'IITM-ESM', 'INM-CM4-8', 'INM-CM5-0', 'IPSL-CM6A-LR', 'KACE-1-0-G', 'KIOST-ESM',
+                 'MIROC-ES2L', 'MIROC6', 'MPI-ESM1-2-HR', 'MPI-ESM1-2-LR', 'MRI-ESM2-0', 'NESM3',
+                 'NorESM2-LM', 'NorESM2-MM', 'TaiESM1', 'UKESM1-0-LL'
                  ];
                  
 var listScenario = ['historical'];
@@ -84,15 +82,11 @@ for (var listGCM = 0; listGCM < listGCMmodel.length; listGCM++){
     }
     
   print('Mostrar modelo y escenario:', param.model, param.scenario)
-
-  // Generando una lista vacia
-  
-  // var listEXP = ee.List([]);
-  
+    
   // Fechas del modelo historico, Formato Año mes dia (YYYY-MM-DD)
   
   var DateIni = '1990-01-01';
-  var DateFin = '1991-12-31';
+  var DateFin = '1990-12-31';
   
   // 3. Ejecucion para extrccion de datos
   
@@ -133,6 +127,7 @@ for (var listGCM = 0; listGCM < listGCMmodel.length; listGCM++){
 }
 
 var DataEXP = ee.FeatureCollection(listEXP).flatten();
+
 
 // ******************************************************************************
 // Representando los valores extraidos
@@ -195,8 +190,7 @@ print(timeSeriesChart)
 
 Export.table.toDrive({
   collection: DataEXP,
-  description: 'GCM_'+ param.variable + '_' + param.scenario,
+  description: 'GCM_CMIP6_'+ param.variable + '_' + param.scenario,
   folder: 'GCM_CMIP6' + '_' + param.variable, 
   fileFormat: 'CSV'
 })
-
